@@ -13,7 +13,7 @@ execute:
   echo: fenced
 reference-location: margin
 citation-location: margin
-bibliography: skeleton.bib
+bibliography: replica-trick-tutorial-bib.bib
 ---
 # Random Energy Model
 Here we do a tutorial calculation of the random energy model.
