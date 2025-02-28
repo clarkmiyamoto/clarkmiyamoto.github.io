@@ -10,7 +10,7 @@
 <atom:link href="https://clarkmiyamoto.github.io/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.6.42</generator>
-<lastBuildDate>Tue, 27 Feb 2024 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 28 Feb 2025 05:00:00 GMT</lastBuildDate>
 <item>
   <title>Tutorial on Replica Trick</title>
   <dc:creator>Clark Miyamoto</dc:creator>
@@ -20,7 +20,11 @@
 
 
 
-<section id="random-energy-model" class="level1">
+<p>In physics, one is often concered with finding the quenched free energy <img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Balign%7D%0A-%20%5Cbeta%20F%20=%20%5Cmathbb%20E%5B%5Clog%20Z%5D%0A%5Cend%7Balign%7D"> In bayesian machine learning / probablistic graphical models, one might be concered with computing the evidence <img src="https://latex.codecogs.com/png.latex?p(%5Cmathcal%20D)">. However in practice, it’s extrememly difficult to calculate this quantity. Here I’ll present Georgio Parisi’s method to compute such quantities: the replica trick.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Consider a Hamiltonian where parameters are sampled from a distribution. So there are a thermodyanmic average (found by computing derivatives on the parition funciton), and there’s a quenched average (found by averaging over said parameters)</p>
+</div></div><section id="random-energy-model" class="level1">
 <h1>Random Energy Model</h1>
 <p>Here we do a tutorial calculation of the random energy model. <img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Balign%7D%0AZ%20=%20%5Csum_%7Bi=1%7D%5E%7B2%5EN%7D%20%5Cexp(-%20%5Cbeta%20E_%7Bi%7D)%0A%5Cend%7Balign%7D"></p>
 <p>where <img src="https://latex.codecogs.com/png.latex?E_i%20%5Csim%20%5Cmathcal%20N(0,%20N/2)"> iid. Our replica partition function becomes <img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Balign%7D%0A%20%20%20%20Z%5En%20&amp;%20=%20%5Csum_%7Bi_1,%20...,%20i_n%20=%201%7D%5E%7B2%5EN%7D%20%5Cexp(-%20%5Cbeta%20E_%7Bi_1%7D%20-%20...%20-%20%5Cbeta%20E_%7Bi_n%7D)%0A%5Cend%7Balign%7D"> The configuration of the replicated system is given by a tuple <img src="https://latex.codecogs.com/png.latex?(i_1,%20...,%20i_n)"> where <img src="https://latex.codecogs.com/png.latex?i_%5Calpha%20%5Cin%20%5C%7B1,%20...,%202%5EN%5C%7D">. So there are a total of <img src="https://latex.codecogs.com/png.latex?2%5E%7BN%5En%7D"> possible configurations. A convient way of re-expressing this is to insert the identity in the form of the indicator function <img src="https://latex.codecogs.com/png.latex?1%20=%20%5Csum_%7Ba=1%7D%5En%20%5Cmathbb%20I(i_a%20=%20j)"> (this holds when <img src="https://latex.codecogs.com/png.latex?j%20%5Cin%20%5C%7Bi_1,%20...,%20i_n%5C%7D">) <img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Balign%7D%0A%20%20%20%20Z%5En%20&amp;%20=%20%20%5Csum_%7Bi_1,%20...,%20i_n%20=%201%7D%5E%7B2%5EN%7D%20%20%5Cexp%20%5Cleft%20(-%20%5Csum_%7Bj=1%7D%5E%7B2%5EN%7D%20%5Cbeta%20E_j%20%5Csum_%7Ba=1%7D%5En%20%5Cmathbb%20I(i_a%20=%20j)%5Cright)%20%5C%5C%0A%20%20%20%20&amp;%20=%20%5Csum_%7Bi_1,%20...,%20i_n%20=%201%7D%5E%7B2%5EN%7D%20%5Cprod_%7Bj=1%7D%5E%7B2%5EN%7D%20%5Cexp%20%5Cleft%20(-%20%5Cbeta%20E_j%20%5Csum_%7Ba=1%7D%5En%20%5Cmathbb%20I(i_a%20=%20j)%5Cright)%0A%5Cend%7Balign%7D"> where <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%20I"> is the indicator function. We can now take the expectation value over <img src="https://latex.codecogs.com/png.latex?E_i">, as we assumed iid, so it factorizes. <img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Balign%7D%0A%20%20%20%20%5Cmathbb%20E%5BZ%5En%5D%20=%20%5Csum_%7Bi_1,%20...,%20i_n%20=%201%7D%5E%7B2%5EN%7D%20%5Cprod_%7Bj=1%7D%5E%7B2%5EN%7D%20%5Cexp%20%5Cleft%20(%5Cfrac%7B%5Cbeta%5E2N%7D%7B4%7D%20%5Cleft%20%5B%5Csum_%7Ba=1%7D%5En%20%5Cmathbb%20I(i_a%20=%20j)%20%20%5Cright%5D%5E2%5Cright)%0A%5Cend%7Balign%7D"> Note that <img src="https://latex.codecogs.com/png.latex?%5Csum_%7Bj=1%7D%5E%7B2%5EN%7D%5Cleft%20%5B%5Csum_%7Ba=1%7D%5En%20%5Cmathbb%20I(i_a%20=%20j)%20%20%5Cright%5D%5E2%20=%20%5Csum_%7Bj=1%7D%5E%7B2%5EN%7D%20%5Csum_%7Ba,b=1%7D%5En%20%5Cmathbb%20I(i_a%20=%20j)%20%20%5Cmathbb%20I(i_b%20=%20j)%20=%20%5Csum_%7Ba,b=1%7D%5En%20%5Cmathbb%20I(i_a%20=%20i_b)">. <img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Balign%7D%0A%20%20%20%20%5Cmathbb%20E%5BZ%5En%5D%20=%20%5Csum_%7Bi_1,%20...,%20i_n%20=%201%7D%5E%7B2%5EN%7D%20%20%5Cexp%20%5Cleft%20(%5Cfrac%7B%5Cbeta%5E2N%7D%7B4%7D%20%5Csum_%7Ba,b=1%7D%5En%20%5Cmathbb%20I(i_a%20=%20i_b)%20%5Cright)%0A%5Cend%7Balign%7D"> If we interpret this directly, the energy of the entire replica system now looks like <img src="https://latex.codecogs.com/png.latex?E_%7Bi_1,%20...,%20i_n%7D%20=%20%5Cfrac%7B-%5Cbeta%20N%7D%7B4%7D%20%5Csum_%7Ba,b=1%7D%5En%20%5Cmathbb%20I(i_a%20=%20i_b)">. So after quenching the replicas “interact” (I precisely mean the energy does not factorize over addition <img src="https://latex.codecogs.com/png.latex?E_%7Bi_1,%20...,%20i_n%7D%20%5Cneq%20%5Csum_a%20E_%7Bi_a%7D">).</p>
@@ -89,7 +93,7 @@
 
  ]]></description>
   <guid>https://clarkmiyamoto.github.io/blog/replica-trick-tutorial.html</guid>
-  <pubDate>Tue, 27 Feb 2024 00:00:00 GMT</pubDate>
+  <pubDate>Fri, 28 Feb 2025 05:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
