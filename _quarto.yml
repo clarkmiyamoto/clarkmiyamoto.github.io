@@ -8,15 +8,9 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
-  sidebar:
-    style: docked
-    collapse-level: 1
-    background: light
-    contents:
-      - section: "Blog"
-        href: blog/index.qmd
-
+      - href: blog/index.qmd
+        text: Blog  # Add the blog link here, which will be part of the top navbar
+  sidebar: []  # Remove the sidebar entirely, or just leave it empty
 
 format:
   html:
@@ -25,6 +19,3 @@ format:
       - brand
     css: styles.css
     toc: true
-
-
-
