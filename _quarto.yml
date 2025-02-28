@@ -3,14 +3,12 @@ project:
   output-dir: docs
 
 website:
-  title: "Clark Miyamoto's Homepage"
+  title: "<a href='index.qmd'>Clark Miyamoto's Homepage</a>"  # Title is now a clickable link to home
   navbar:
     left:
-      - href: index.qmd
-        text: Home
       - href: blog/index.qmd
-        text: Blog  # Add the blog link here, which will be part of the top navbar
-  sidebar: []  # Remove the sidebar entirely, or just leave it empty
+        text: Blog  # Only the Blog link remains
+  sidebar: []  # No sidebar
 
 format:
   html:
