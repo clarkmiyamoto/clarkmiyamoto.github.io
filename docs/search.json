@@ -9,16 +9,16 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "homepage",
+    "title": "<a href='/index.qmd'>Clark Miyamoto</a>",
     "section": "",
-    "text": "Clark Miyamoto is a Physics PhD student at NYU. I’m interestd in the intersection between statistical physics and inference problems. Also ML is cool."
+    "text": "Clark Miyamoto is a Physics PhD student at NYU. I’m interestd in the intersection between statistical physics / inference problems / machine learning.\nAlso I failed English in high school, so send typo corrections to cm6627@nyu.edu."
   },
   {
     "objectID": "blog/replica-trick-tutorial.html",
     "href": "blog/replica-trick-tutorial.html",
     "title": "Tutorial on Replica Trick",
     "section": "",
-    "text": "In physics, one is often concered with finding the quenched free energy \\[\\begin{align}\n- \\beta F = \\mathbb E[\\log Z]\n\\end{align}\\] In bayesian machine learning / probablistic graphical models, one might be concered with computing the evidence \\(p(\\mathcal D)\\). However in practice, it’s extrememly difficult to calculate this quantity. Here I’ll present Georgio Parisi’s method to compute such quantities: the replica trick."
+    "text": "In physics, one is often concered with finding the quenched free energy \\[\\begin{align}\n- \\beta F = \\mathbb E[\\log Z]\n\\end{align}\\] In bayesian machine learning / probablistic graphical models, one might be concered with computing the evidence \\(p(\\mathcal D)\\). However in practice, it’s extrememly difficult to calculate this quantity. Here I’ll present Georgio Parisi’s method (for which he won the Nobel Prize) to compute such quantities: the replica trick.\nThe trick can be summarized as applying the formula \\[\\begin{align}\n\\mathbb E[\\log Z] = \\lim_{n \\to 0} \\frac{1}{n} \\log \\mathbb E[Z^n]\n\\end{align}\\] where one interprets \\(Z^n\\) to be \\(n\\) statistically independent replicas of the variables. From there, you non-rigoroulsy analytically continue \\(n\\) down to zero."
   },
   {
     "objectID": "blog/replica-trick-tutorial.html#replica-symmetry-solution",

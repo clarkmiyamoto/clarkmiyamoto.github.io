@@ -19,11 +19,21 @@ In physics, one is often concered with finding the quenched free energy
 - \beta F = \mathbb E[\log Z]
 \end{align}
 In bayesian machine learning / probablistic graphical models, one might be concered with computing the evidence $p(\mathcal D)$. 
-However in practice, it's extrememly difficult to calculate this quantity. Here I'll present Georgio Parisi's method to compute such quantities: the replica trick.
+However in practice, it's extrememly difficult to calculate this quantity. 
+Here I'll present Georgio Parisi's method (for which he won the Nobel Prize) to compute such quantities: the replica trick.
 
 ::: column-margin
-Consider a Hamiltonian where parameters are sampled from a distribution. So there are a thermodyanmic average (found by computing derivatives on the parition funciton), and there's a quenched average (found by averaging over said parameters)
+"Quenched free energy" refers to an average over the paramters $\theta$ in your Hamiltonian $H_\theta$ 
+(assuming $\theta$ is sampled from some distribution).
+Note this is distinct from the thermodynamic average, which is where you compute derivatives on the partition function.
 :::
+
+The trick can be summarized as applying the formula
+\begin{align}
+\mathbb E[\log Z] = \lim_{n \to 0} \frac{1}{n} \log \mathbb E[Z^n]
+\end{align}
+where one interprets $Z^n$ to be $n$ statistically independent replicas of the variables. 
+From there, you non-rigoroulsy analytically continue $n$ down to zero.
 
 # Random Energy Model
 Here we do a tutorial calculation of the random energy model.

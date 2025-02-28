@@ -4957,11 +4957,14 @@ window.Quarto = {
 
 <p>In physics, one is often concered with finding the quenched free energy <span class="math display">\[\begin{align}
 - \beta F = \mathbb E[\log Z]
-\end{align}\]</span> In bayesian machine learning / probablistic graphical models, one might be concered with computing the evidence <span class="math inline">\(p(\mathcal D)\)</span>. However in practice, it’s extrememly difficult to calculate this quantity. Here I’ll present Georgio Parisi’s method to compute such quantities: the replica trick.</p>
+\end{align}\]</span> In bayesian machine learning / probablistic graphical models, one might be concered with computing the evidence <span class="math inline">\(p(\mathcal D)\)</span>. However in practice, it’s extrememly difficult to calculate this quantity. Here I’ll present Georgio Parisi’s method (for which he won the Nobel Prize) to compute such quantities: the replica trick.</p>
 
 <div class="no-row-height column-margin column-container"><div class>
-<p>Consider a Hamiltonian where parameters are sampled from a distribution. So there are a thermodyanmic average (found by computing derivatives on the parition funciton), and there’s a quenched average (found by averaging over said parameters)</p>
-</div></div><section id="random-energy-model" class="level1">
+<p>“Quenched free energy” refers to an average over the paramters <span class="math inline">\(\theta\)</span> in your Hamiltonian <span class="math inline">\(H_\theta\)</span> (assuming <span class="math inline">\(\theta\)</span> is sampled from some distribution). Note this is distinct from the thermodynamic average, which is where you compute derivatives on the partition function.</p>
+</div></div><p>The trick can be summarized as applying the formula <span class="math display">\[\begin{align}
+\mathbb E[\log Z] = \lim_{n \to 0} \frac{1}{n} \log \mathbb E[Z^n]
+\end{align}\]</span> where one interprets <span class="math inline">\(Z^n\)</span> to be <span class="math inline">\(n\)</span> statistically independent replicas of the variables. From there, you non-rigoroulsy analytically continue <span class="math inline">\(n\)</span> down to zero.</p>
+<section id="random-energy-model" class="level1">
 <h1>Random Energy Model</h1>
 <p>Here we do a tutorial calculation of the random energy model. <span class="math display">\[\begin{align}
 Z = \sum_{i=1}^{2^N} \exp(- \beta E_{i})
