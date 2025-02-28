@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "homepage",
+    "section": "",
+    "text": "about about about"
+  },
+  {
     "objectID": "blog/replica-trick-tutorial.html",
     "href": "blog/replica-trick-tutorial.html",
     "title": "Tutorial on Replica Trick",
@@ -40,13 +47,6 @@
     "title": "Tutorial on Replica Trick",
     "section": "Gartner-Ellis Theorem",
     "text": "Gartner-Ellis Theorem\nDefinition (Exposed Point): \\(x \\in \\mathbb R\\) is consider an exposed point for function \\(f: \\mathbb R \\to \\mathbb R\\), if \\(\\exists t\\) s.t. \\(\\forall y \\neq x\\) the following holds \\[\\begin{align}\n  t y - f(y) &gt; t x - f(x)\n\\end{align}\\]"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "homepage",
-    "section": "",
-    "text": "about about about"
   },
   {
     "objectID": "index.html",

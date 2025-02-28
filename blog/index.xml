@@ -5,12 +5,12 @@
       xmlns:dc="http://purl.org/dc/elements/1.1/" 
       version="2.0">
 <channel>
-<title>Clark Miyamoto&#39;s Homepage</title>
+<title>&lt;a href=&#39;index.qmd&#39;&gt;Clark Miyamoto&#39;s Homepage&lt;/a&gt;</title>
 <link>https://clarkmiyamoto.github.io/blog/</link>
 <atom:link href="https://clarkmiyamoto.github.io/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.6.42</generator>
-<lastBuildDate>Fri, 28 Feb 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 28 Feb 2025 05:00:00 GMT</lastBuildDate>
 <item>
   <title>Tutorial on Replica Trick</title>
   <dc:creator>Clark Miyamoto</dc:creator>
@@ -93,7 +93,7 @@
 
  ]]></description>
   <guid>https://clarkmiyamoto.github.io/blog/replica-trick-tutorial.html</guid>
-  <pubDate>Fri, 28 Feb 2025 00:00:00 GMT</pubDate>
+  <pubDate>Fri, 28 Feb 2025 05:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
