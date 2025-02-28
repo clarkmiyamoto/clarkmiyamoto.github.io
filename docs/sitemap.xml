@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://clarkmiyamoto.github.io/about.html</loc>
+    <loc>https://clarkmiyamoto.github.io/blog/index.html</loc>
     <lastmod>2025-02-28T07:23:12.522Z</lastmod>
+  </url>
+  <url>
+    <loc>https://clarkmiyamoto.github.io/index.html</loc>
+    <lastmod>2025-02-28T08:17:02.378Z</lastmod>
   </url>
   <url>
     <loc>https://clarkmiyamoto.github.io/blog/replica-trick-tutorial.html</loc>
     <lastmod>2025-02-28T08:02:46.075Z</lastmod>
-  </url>
-  <url>
-    <loc>https://clarkmiyamoto.github.io/index.html</loc>
-    <lastmod>2025-02-28T07:23:12.523Z</lastmod>
-  </url>
-  <url>
-    <loc>https://clarkmiyamoto.github.io/blog/index.html</loc>
-    <lastmod>2025-02-28T07:23:12.522Z</lastmod>
   </url>
 </urlset>
