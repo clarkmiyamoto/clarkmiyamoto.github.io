@@ -1,13 +1,22 @@
 project:
   type: website
+  output-dir: docs
 
 website:
-  title: "homepage"
+  title: "Clark Miyamoto's Homepage"
   navbar:
     left:
       - href: index.qmd
         text: Home
       - about.qmd
+  sidebar:
+    style: docked
+    collapse-level: 1
+    background: light
+    contents:
+      - section: "Blog"
+        href: blog/index.qmd
+
 
 format:
   html:

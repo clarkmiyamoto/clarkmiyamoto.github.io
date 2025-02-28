@@ -1,0 +1,6 @@
+/.quarto/
+/docs/
+
+**/.ipynb_checkpoints
+
+.DS_Store

@@ -1,0 +1,5 @@
+---
+title: "homepage"
+---
+
+Clark Miyamoto is a Physics PhD student at NYU.
