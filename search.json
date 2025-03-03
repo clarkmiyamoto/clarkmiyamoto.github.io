@@ -1,10 +1,24 @@
 [
   {
+    "objectID": "blog/index.html",
+    "href": "blog/index.html",
+    "title": "Blog posts",
+    "section": "",
+    "text": "Tutorial on Replica Trick\n\n\n\n\n\n\n\n\n\n\n\nFeb 2025\n\n\nClark Miyamoto\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "<a href='/index.qmd'>Clark Miyamoto</a>",
+    "section": "",
+    "text": "Clark Miyamoto is a Physics PhD student at NYU. I’m interestd in the intersection between statistical physics / inference problems / machine learning.\nAlso I failed English in high school, so send typo corrections to cm6627@nyu.edu."
+  },
+  {
     "objectID": "blog/replica-trick-tutorial.html",
     "href": "blog/replica-trick-tutorial.html",
     "title": "Tutorial on Replica Trick",
     "section": "",
-    "text": "In physics, one is often concered with finding the quenched free energy \\[\\begin{align}\n- \\beta F = \\mathbb E[\\log Z]\n\\end{align}\\] In bayesian machine learning / probablistic graphical models, one might be concered with computing the evidence \\(p(\\mathcal D)\\). However in practice, it’s extrememly difficult to calculate this quantity. Here I’ll present Georgio Parisi’s method (for which he won the Nobel Prize) to compute such quantities: the replica trick.\nThe trick can be summarized as applying the formula \\[\\begin{align}\n\\mathbb E[\\log Z] = \\lim_{n \\to 0} \\frac{1}{n} \\log \\mathbb E[Z^n]\n\\end{align}\\] where one interprets \\(Z^n\\) to be \\(n\\) statistically independent replicas of the variables. From there, you non-rigoroulsy analytically continue \\(n\\) down to zero."
+    "text": "In physics, we want to compute the quenched free energy \\(F\\). Equivalently in bayesian machine learning / probablistic graphical models, we want to compute the evidence \\(p(\\mathcal D)\\). \\[\\begin{align}\n- \\beta F = \\mathbb E[\\log Z]\n\\end{align}\\] However in practice, it’s extrememly difficult to calculate this quantity. Here I’ll present Georgio Parisi’s method (for which he won the Nobel Prize) to compute such quantities: the replica trick.\nThe trick can be summarized as applying the formula \\[\\begin{align}\n\\mathbb E[\\log Z] = \\lim_{n \\to 0} \\frac{1}{n} \\log \\mathbb E[Z^n]\n\\end{align}\\] where one interprets \\(Z^n\\) to be \\(n\\) statistically independent replicas of the variables. From there, you non-rigoroulsy analytically continue \\(n\\) down to zero."
   },
   {
     "objectID": "blog/replica-trick-tutorial.html#replica-symmetry-solution",
@@ -40,19 +54,5 @@
     "title": "Tutorial on Replica Trick",
     "section": "Gartner-Ellis Theorem",
     "text": "Gartner-Ellis Theorem\nDefinition (Exposed Point): \\(x \\in \\mathbb R\\) is consider an exposed point for function \\(f: \\mathbb R \\to \\mathbb R\\), if \\(\\exists t\\) s.t. \\(\\forall y \\neq x\\) the following holds \\[\\begin{align}\n  t y - f(y) &gt; t x - f(x)\n\\end{align}\\]"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "<a href='/index.qmd'>Clark Miyamoto</a>",
-    "section": "",
-    "text": "Clark Miyamoto is a Physics PhD student at NYU. I’m interestd in the intersection between statistical physics / inference problems / machine learning.\nAlso I failed English in high school, so send typo corrections to cm6627@nyu.edu."
-  },
-  {
-    "objectID": "blog/index.html",
-    "href": "blog/index.html",
-    "title": "Blog posts",
-    "section": "",
-    "text": "Tutorial on Replica Trick\n\n\n\n\n\n\n\n\n\n\n\nFeb 2025\n\n\nClark Miyamoto\n\n\n\n\n\n\nNo matching items"
   }
 ]
