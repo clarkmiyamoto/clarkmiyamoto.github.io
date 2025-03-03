@@ -4955,9 +4955,9 @@ window.Quarto = {
 </header>
 
 
-<p>In physics, one is often concered with finding the quenched free energy <span class="math display">\[\begin{align}
+<p>In physics, we want to compute the quenched free energy <span class="math inline">\(F\)</span>. Equivalently in bayesian machine learning / probablistic graphical models, we want to compute the evidence <span class="math inline">\(p(\mathcal D)\)</span>. <span class="math display">\[\begin{align}
 - \beta F = \mathbb E[\log Z]
-\end{align}\]</span> In bayesian machine learning / probablistic graphical models, one might be concered with computing the evidence <span class="math inline">\(p(\mathcal D)\)</span>. However in practice, it’s extrememly difficult to calculate this quantity. Here I’ll present Georgio Parisi’s method (for which he won the Nobel Prize) to compute such quantities: the replica trick.</p>
+\end{align}\]</span> However in practice, it’s extrememly difficult to calculate this quantity. Here I’ll present Georgio Parisi’s method (for which he won the Nobel Prize) to compute such quantities: the replica trick.</p>
 
 <div class="no-row-height column-margin column-container"><div class>
 <p>“Quenched free energy” refers to an average over the paramters <span class="math inline">\(\theta\)</span> in your Hamiltonian <span class="math inline">\(H_\theta\)</span> (assuming <span class="math inline">\(\theta\)</span> is sampled from some distribution). Note this is distinct from the thermodynamic average, which is where you compute derivatives on the partition function.</p>
@@ -4966,6 +4966,7 @@ window.Quarto = {
 \end{align}\]</span> where one interprets <span class="math inline">\(Z^n\)</span> to be <span class="math inline">\(n\)</span> statistically independent replicas of the variables. From there, you non-rigoroulsy analytically continue <span class="math inline">\(n\)</span> down to zero.</p>
 <section id="random-energy-model" class="level1">
 <h1>Random Energy Model</h1>
+<p>This section follows <code>Information, Physics, and Computation by Mézard and Montanari, Chapter 8</code></p>
 <p>Here we do a tutorial calculation of the random energy model. <span class="math display">\[\begin{align}
 Z = \sum_{i=1}^{2^N} \exp(- \beta E_{i})
 \end{align}\]</span></p>

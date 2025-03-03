@@ -14,11 +14,11 @@ execute:
 reference-location: margin
 citation-location: margin
 ---
-In physics, one is often concered with finding the quenched free energy
+In physics, we want to compute the quenched free energy $F$. 
+Equivalently in bayesian machine learning / probablistic graphical models, we want to compute the evidence $p(\mathcal D)$. 
 \begin{align}
 - \beta F = \mathbb E[\log Z]
 \end{align}
-In bayesian machine learning / probablistic graphical models, one might be concered with computing the evidence $p(\mathcal D)$. 
 However in practice, it's extrememly difficult to calculate this quantity. 
 Here I'll present Georgio Parisi's method (for which he won the Nobel Prize) to compute such quantities: the replica trick.
 
@@ -36,6 +36,10 @@ where one interprets $Z^n$ to be $n$ statistically independent replicas of the v
 From there, you non-rigoroulsy analytically continue $n$ down to zero.
 
 # Random Energy Model
+
+
+This section follows `Information, Physics, and Computation by Mézard and Montanari, Chapter 8`
+
 Here we do a tutorial calculation of the random energy model.
 \begin{align}
 Z = \sum_{i=1}^{2^N} \exp(- \beta E_{i})
