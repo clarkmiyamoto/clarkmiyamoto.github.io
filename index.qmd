@@ -4,4 +4,4 @@
 Clark Miyamoto is a Physics PhD student at NYU. 
 I'm interestd in the intersection between statistical physics / inference problems / machine learning. 
 
-Also I failed English in high school, so send typo corrections to cm6627@nyu.edu.
+Also I failed English in high school, so send typo corrections to `cm6627` `at` `nyu` `dot` `edu`.
