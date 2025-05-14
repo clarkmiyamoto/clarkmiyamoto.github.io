@@ -11,7 +11,14 @@
     "href": "index.html",
     "title": "<a href='/index.qmd'>Clark Miyamoto</a>",
     "section": "",
-    "text": "Clark Miyamoto is a Physics PhD student at NYU. I’m interestd in the intersection between statistical physics / inference problems / machine learning.\nAlso I failed English in high school, so send typo corrections to cm6627@nyu.edu."
+    "text": "Clark Miyamoto is a Physics PhD student at New York University. I’m interestd in the intersection between statistical physics / inference problems / machine learning.\nAlso am very bad at spelling, so send typo corrections to cm6627 [at] nyu [dot] edu."
+  },
+  {
+    "objectID": "index.html#news",
+    "href": "index.html#news",
+    "title": "<a href='/index.qmd'>Clark Miyamoto</a>",
+    "section": "News",
+    "text": "News\n\nAugust 2025:\n\nI’ll be attending the Princeton Machine Learning Theory Summer School.\nI’ll be attending IAIFI’s Summer School + Workshop.\n\nJune 2025: I’ll be attending Beg Rhou’s Summer School of Physics: Learning with Machines, Physics and Mind. This will be my first summer school of my PhD & my first time in Europe– very exciting!"
   },
   {
     "objectID": "blog/replica-trick-tutorial.html",

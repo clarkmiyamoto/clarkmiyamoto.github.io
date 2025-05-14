@@ -1,7 +1,15 @@
 ---
 ---
 
-Clark Miyamoto is a Physics PhD student at NYU. 
+Clark Miyamoto is a Physics PhD student at New York University. 
 I'm interestd in the intersection between statistical physics / inference problems / machine learning. 
 
-Also I failed English in high school, so send typo corrections to cm6627@nyu.edu.
+Also am very bad at spelling, so send typo corrections to `cm6627 [at] nyu [dot] edu`.
+
+_________
+
+## News
+- August 2025: 
+    - I'll be attending the Princeton Machine Learning Theory Summer School.
+    - I'll be attending IAIFI's Summer School + Workshop.
+- June 2025: I'll be attending Beg Rhou's Summer School of Physics: Learning with Machines, Physics and Mind. This will be my first summer school of my PhD & my first time in Europe-- very exciting!
