@@ -9,8 +9,8 @@
 <link>https://clarkmiyamoto.github.io/blog/</link>
 <atom:link href="https://clarkmiyamoto.github.io/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.6.42</generator>
-<lastBuildDate>Fri, 28 Feb 2025 05:00:00 GMT</lastBuildDate>
+<generator>quarto-1.7.31</generator>
+<lastBuildDate>Fri, 28 Feb 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Tutorial on Replica Trick</title>
   <dc:creator>Clark Miyamoto</dc:creator>
@@ -95,7 +95,7 @@
 
  ]]></description>
   <guid>https://clarkmiyamoto.github.io/blog/replica-trick-tutorial.html</guid>
-  <pubDate>Fri, 28 Feb 2025 05:00:00 GMT</pubDate>
+  <pubDate>Fri, 28 Feb 2025 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
