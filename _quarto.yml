@@ -1,6 +1,9 @@
 project:
   type: website
   output-dir: docs
+  resources:
+    - external/begrohu2025/main.pdf
+  
 
 website:
   title: "<a href='/index.qmd'>Clark Miyamoto</a>"
