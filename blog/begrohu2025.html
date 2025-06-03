@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Clark Miyamoto">
-<meta name="dcterms.date" content="2025-02-28">
+<meta name="dcterms.date" content="2025-06-02">
 
-<title>Tutorial on Replica Trick – Clark Miyamoto</title>
+<title>Beg Rohu Lecture Notes – Clark Miyamoto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -4902,31 +4902,15 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#random-energy-model" id="toc-random-energy-model" class="nav-link active" data-scroll-target="#random-energy-model">Random Energy Model</a>
-  <ul class="collapse">
-  <li><a href="#replica-symmetry-solution" id="toc-replica-symmetry-solution" class="nav-link" data-scroll-target="#replica-symmetry-solution">Replica Symmetry Solution</a></li>
-  <li><a href="#one-step-replica-symmetry-breaking-1rsb-solution" id="toc-one-step-replica-symmetry-breaking-1rsb-solution" class="nav-link" data-scroll-target="#one-step-replica-symmetry-breaking-1rsb-solution">One-Step Replica-Symmetry Breaking (1RSB) Solution</a></li>
-  </ul></li>
-  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix">Appendix</a>
-  <ul class="collapse">
-  <li><a href="#understanding-minimization-of-gcdot-via-toy-model" id="toc-understanding-minimization-of-gcdot-via-toy-model" class="nav-link" data-scroll-target="#understanding-minimization-of-gcdot-via-toy-model">Understanding minimization of <span class="math inline">\(g(\cdot)\)</span> via toy model</a></li>
-  <li><a href="#saddle-point" id="toc-saddle-point" class="nav-link" data-scroll-target="#saddle-point">Saddle Point</a></li>
-  <li><a href="#gartner-ellis-theorem" id="toc-gartner-ellis-theorem" class="nav-link" data-scroll-target="#gartner-ellis-theorem">Gartner-Ellis Theorem</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Tutorial on Replica Trick</h1>
+<h1 class="title">Beg Rohu Lecture Notes</h1>
 </div>
 
 
@@ -4943,7 +4927,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 28, 2025</p>
+      <p class="date">June 2, 2025</p>
     </div>
   </div>
   
@@ -4955,148 +4939,91 @@ window.Quarto = {
 </header>
 
 
-<p>In physics, we want to compute the quenched free energy <span class="math inline">\(F\)</span>. Equivalently in bayesian machine learning / probablistic graphical models, we want to compute the evidence <span class="math inline">\(p(\mathcal D)\)</span>. <span class="math display">\[\begin{align}
-- \beta F = \mathbb E[\log Z]
-\end{align}\]</span> However in practice, it’s extrememly difficult to calculate this quantity. Here I’ll present Georgio Parisi’s method (for which he won the Nobel Prize) to compute such quantities: the replica trick.</p>
-
-<div class="no-row-height column-margin column-container"><div class>
-<p>“Quenched free energy” refers to an average over the paramters <span class="math inline">\(\theta\)</span> in your Hamiltonian <span class="math inline">\(H_\theta\)</span> (assuming <span class="math inline">\(\theta\)</span> is sampled from some distribution). Note this is distinct from the thermodynamic average, which is where you compute derivatives on the partition function.</p>
-</div></div><p>The trick can be summarized as applying the formula <span class="math display">\[\begin{align}
-\mathbb E[\log Z] = \lim_{n \to 0} \frac{1}{n} \log \mathbb E[Z^n]
-\end{align}\]</span> where one interprets <span class="math inline">\(Z^n\)</span> to be <span class="math inline">\(n\)</span> statistically independent replicas of the variables. From there, you non-rigoroulsy analytically continue <span class="math inline">\(n\)</span> down to zero.</p>
-<section id="random-energy-model" class="level1">
-<h1>Random Energy Model</h1>
-<p>This section follows <code>Information, Physics, and Computation by Mézard and Montanari, Chapter 8</code></p>
-<p>Here we do a tutorial calculation of the random energy model. <span class="math display">\[\begin{align}
-Z = \sum_{i=1}^{2^N} \exp(- \beta E_{i})
+We’ll be going from score-diffusion and eventually make our way to the renormalization group.\ \ The setup is you’re given a set of input data <span class="math inline">\(\{x_i : x_i \in \mathbb R^d\}_{i \leq n}\)</span> which (we believe) to be sampled from a distribution <span class="math inline">\(p(x)\)</span>. Your objective is to reconstruct this probability distribution.\ \ Doing this problem in the physics context, the canonical example will be attempting to recreate samples from a Ising / <span class="math inline">\(\phi^4\)</span> model. Some more advanced problems are turbulence, cosmology, metrology, and climatology. Apart from physics, you can also generate new image (i.e. conditional generation), and use it to solve inverse problems.\ \ As you start to think more about this problem, it might seem hopeless to learn <span class="math inline">\(p(x)\)</span>. This is because the problem suffers from the . A crude way to calculate this is to first assume <span class="math inline">\(p(x)\)</span> is Lipschifts
+This means you’ll need <span class="math inline">\(\sim C \epsilon^{-d}\)</span> amount of data… You can see you’re screwed.\ \ We can start to tackle this problem by making a key assumption, factorize the distribution <span class="math display">\[\begin{align}
+    p(x) = \prod_k p_k(x) \implies \log p(x) = \sum_k \log p_k(x)
+\end{align}\]</span> Two problems now emerge
+<p>The first method is to assume <span class="math inline">\(p(x)\)</span> is a empirical distribution, by this I mean <span class="math inline">\(p(x) = \frac{1}{n} \sum_{i=1}^n  \delta_{x_i}\)</span> (which are get all the observed data, and draw it uniformly).</p>
+By , we mean constructing a new function <span class="math inline">\(p_t(x)\)</span> which is a probability distribution <span class="math inline">\(\forall t\)</span>, with boundary conditions <span class="math inline">\(p_{t=0}(x) =  p(x)\)</span> and <span class="math inline">\(p_{t=T}(x) = p_{gaussian}(x)\)</span>. So basically, can we find a new probability distribution which moves from complex things to NOT complex things.\ \ There is a , which is some noising operator. And there is a , which undo’s the noise (usually involves the ML algorithm). What we’ll end up seeing is that these processes ends up being equivalent to RG discovered by Kadanoff &amp; Wilson. \ \ A particular ansatz we can take is <span class="math display">\[\begin{align}
+    p(x) = \underbrace{p(x_T)}_{\text{Gaussian}} \prod_{t=T+1}^1 p(x_t / x_{t-1})
+\end{align}\]</span>
+When we say we have an energy based model, we have a probability distribution over <span class="math inline">\(x = (x_1, ..., x_d)\)</span> which takes the form <span class="math display">\[\begin{align}
+    p_\theta(x) = \frac{e^{- U_\theta(x)}}{Z_\theta}, \ \ \text{s.t. } Z_\theta = \int dx ~e^{-U_\theta(x)}
+\end{align}\]</span>
+<p>To minimize this, we end up needing to calculate gradients of the likelihood. In the case of energy based models, that would mean we have to calculate the normalization <span class="math inline">\(\nabla_\theta \log Z_\theta\)</span>, which in practice is quite hard. However, we can massage the problem into <span class="math display">\[\begin{align}
+    \nabla_\theta \ell(\theta) &amp; = \expect_{x \sim p} [\nabla_\theta U(x)] + \log Z_\theta\\
+    &amp; = \mathbb E_{x \sim p}[\nabla_\theta U_\theta(x)]- \expect_{x \sim p_\theta}[\nabla_\theta U_\theta(x)]
+\end{align}\]</span> So now the problem becomes figuring out how to compute <span class="math inline">\(\expect_{x \sim p_\theta}\)</span> which involves spending time to construct a Markov Chain Monte Carlo method.</p>
+GAN stands for Generative Adversarial Network, the original paper is by Goodfellow &amp; Bengio (2014). What you do is you construct two neural networks <span class="math inline">\(G_{\theta_G}\)</span> and <span class="math inline">\(D_{\theta_D}\)</span> and make their tasks adversarial to one another. <span class="math inline">\(G\)</span>’s task is to generate images from noise <span class="math inline">\(z \sim \mathcal N(0,1)\)</span>, and <span class="math inline">\(D\)</span>’s task is to figure out which image was real vs generated. So to recap, <span class="math inline">\(G: z \to \text{Images}\)</span> and <span class="math inline">\(D: \text{Images} \to [0,1]\)</span>, where your goal is that <span class="math display">\[\begin{align}
+    D_{ideal}(x) &amp; = \begin{cases}
+        1 &amp; \text{if } x \text{ is a real image}\\
+        0 &amp; \text{if } x \text{ is a fake image}
+    \end{cases}
+\end{align}\]</span> The loss function is <span class="math display">\[\begin{align}
+    \mathcal L(\theta_D, \theta_G) &amp; = \mathbb E_{x \sim p_{data}}[\log D(x)] + \mathbb E_{z \sim \text{Gaussian}}[\log (1 - D(G(z))]
+\end{align}\]</span> What ends up happening in practice is that GANs almost always memorize the data instead of learning to gneerate. Another way of saying this is this is a difficult nash-equilibrium to obtain, or you see . This is why people used them for image generation, and couldn’t use them for physics data…\ \ A small aside… If you successfully find the global minimizer/maximizer
+<p>Both are theoretical results, so they don’t consider using finite number of samples.</p>
+<p>What if you want to condition your learned distribution on some variables (i.e. text to image, or in-painting). Your loss function will be <span class="math display">\[\begin{align}
+    \mathcal L(D,G) = \mathbb E_{p_{data}} [\log D(x | y)] + \mathbb E_{z \sim p_{data}} [\log (1 - D(G(x|y)))]
 \end{align}\]</span></p>
-<p>where <span class="math inline">\(E_i \sim \mathcal N(0, N/2)\)</span> iid. Our replica partition function becomes <span class="math display">\[\begin{align}
-    Z^n &amp; = \sum_{i_1, ..., i_n = 1}^{2^N} \exp(- \beta E_{i_1} - ... - \beta E_{i_n})
-\end{align}\]</span> The configuration of the replicated system is given by a tuple <span class="math inline">\((i_1, ..., i_n)\)</span> where <span class="math inline">\(i_\alpha \in \{1, ..., 2^N\}\)</span>. So there are a total of <span class="math inline">\(2^{N^n}\)</span> possible configurations. A convient way of re-expressing this is to insert the identity in the form of the indicator function <span class="math inline">\(1 = \sum_{a=1}^n \mathbb I(i_a = j)\)</span> (this holds when <span class="math inline">\(j \in \{i_1, ..., i_n\}\)</span>) <span class="math display">\[\begin{align}
-    Z^n &amp; =  \sum_{i_1, ..., i_n = 1}^{2^N}  \exp \left (- \sum_{j=1}^{2^N} \beta E_j \sum_{a=1}^n \mathbb I(i_a = j)\right) \\
-    &amp; = \sum_{i_1, ..., i_n = 1}^{2^N} \prod_{j=1}^{2^N} \exp \left (- \beta E_j \sum_{a=1}^n \mathbb I(i_a = j)\right)
-\end{align}\]</span> where <span class="math inline">\(\mathbb I\)</span> is the indicator function. We can now take the expectation value over <span class="math inline">\(E_i\)</span>, as we assumed iid, so it factorizes. <span class="math display">\[\begin{align}
-    \mathbb E[Z^n] = \sum_{i_1, ..., i_n = 1}^{2^N} \prod_{j=1}^{2^N} \exp \left (\frac{\beta^2N}{4} \left [\sum_{a=1}^n \mathbb I(i_a = j)  \right]^2\right)
-\end{align}\]</span> Note that <span class="math inline">\(\sum_{j=1}^{2^N}\left [\sum_{a=1}^n \mathbb I(i_a = j)  \right]^2 = \sum_{j=1}^{2^N} \sum_{a,b=1}^n \mathbb I(i_a = j)  \mathbb I(i_b = j) = \sum_{a,b=1}^n \mathbb I(i_a = i_b)\)</span>. <span class="math display">\[\begin{align}
-    \mathbb E[Z^n] = \sum_{i_1, ..., i_n = 1}^{2^N}  \exp \left (\frac{\beta^2N}{4} \sum_{a,b=1}^n \mathbb I(i_a = i_b) \right)
-\end{align}\]</span> If we interpret this directly, the energy of the entire replica system now looks like <span class="math inline">\(E_{i_1, ..., i_n} = \frac{-\beta N}{4} \sum_{a,b=1}^n \mathbb I(i_a = i_b)\)</span>. So after quenching the replicas “interact” (I precisely mean the energy does not factorize over addition <span class="math inline">\(E_{i_1, ..., i_n} \neq \sum_a E_{i_a}\)</span>).</p>
-<p>Now we introduce the <strong>overlap matrix</strong> <span class="math inline">\(Q_{ab} \equiv \mathbb I(i_a = i_b)\)</span> where the entries <span class="math inline">\(\in \{0, 1\}\)</span> (because they’re given by indicator function). The name matrix is a misnomer, this should really be a tensor, as we can iterate in <span class="math inline">\(i_a \in \{1, ..., 2^N\} ~ \forall a\)</span>. <span class="math display">\[\begin{align}
-    \mathbb E[Z^n] &amp; =  \sum_{i_1, ..., i_n = 1}^{2^N} \exp \left (\frac{\beta^2N}{4} \sum_{a,b=1}^n Q_{ab}(i_1, ..., i_n) \right)\\
-    &amp; = \sum_{Q} \mathcal N_N(Q) \exp\left (\frac{\beta^2N}{4} \sum_{a,b=1}^n Q_{ab} \right)
+<p>In this problem, we have an easy to sample distribution <span class="math inline">\(p_z\)</span> (which is Gaussian), and difficult to sample distribution <span class="math inline">\(p_x\)</span> (which is the target distribution). The way we’ll do transport is to learn a diffeomorphism <span class="math inline">\(T_\theta\)</span>, and now we can do change of basis between the two <span class="math display">\[\begin{align}
+    p_x(x) = p_z(T(x)) \det \mathcal J_{T}(x)
+\end{align}\]</span> where <span class="math inline">\(\mathcal J_{T}\)</span> is the Jacobian of <span class="math inline">\(T\)</span>.</p>
+<p>The likelihood ends up being <span class="math display">\[\begin{align}
+    \ell(\theta) = - \mathbb E_{x \sim p} [\log p_z(T_\theta(x))] - \mathbb E_{x \sim p}[\log |\det - \mathcal J_{T_\theta}| ]
+\end{align}\]</span> You may be thinking that the normalization constant (2nd term) looks quite scary… However with the right ansatz, it’s analytically tractable. Here’s how to do it.</p>
+<p>First, break the diffeomorphism into smaller diffeomorophisms <span class="math inline">\(T^{-1}_\theta = T_1^{-1} ... T_k^{-1}\)</span>. So the infal term becomes <span class="math inline">\(\log |\det \mathcal J_{T_\theta}(x)| = \sum_i \log |\det \mathcal J_{T_i}(x_i)|\)</span>.</p>
+<p>Second, we can use block inverse formula to get a nice closed form expression. To keep track of the block inverse, let’s split up <span class="math inline">\(x \in \mathbb R^d = (x_0, x_1) \in \mathbb R^{d_0} \times \mathbb R^{d_1}\)</span> <span class="math display">\[\begin{align}
+    T_\theta(x) &amp; = (x_0, e^{S_\theta(x_0)} \odot x_1 + t_\theta(x_0))\\
+    T_\theta^{-1}(z) &amp; = (z_0, (z_1 - t_\theta(z_0)) \odot e^{-S_\theta (z_0)}
+\end{align}\]</span> where <span class="math inline">\(\odot\)</span> denotes the Hadamar product, and <span class="math inline">\(z = (z_0,z_1)\)</span>. You can now show that the <span class="math inline">\(\log \det\)</span> term picks up a nice expression <span class="math display">\[\begin{align}
+    \implies \log |\det \mathcal{J}_{T_\theta}(x)| = \sum_{i=1}^d s_\theta(x_0)
+\end{align}\]</span> Finally we have our likelihood <span class="math display">\[\begin{align}
+    \ell(\theta) = - \mathbb E_{x \sim p} [\log p_z(T_\theta(x))] - \sum_{i=1}^d \mathbb E_{x \sim p}[ s_\theta(x_0)]
 \end{align}\]</span></p>
-<ul>
-<li><span class="math inline">\(\mathcal N_N(Q)\)</span> is the number of configurations (where <span class="math inline">\((i_1, ..., i_n)\)</span> denotes the microstates, and <span class="math inline">\(Q\)</span> is the macrostate generated by said microstates).</li>
-<li><span class="math inline">\(\sum_Q\)</span> runs over all symmetric matrices with all ones on the diagonal, and the off diagonal only contains <span class="math inline">\(\{0 ,1\}\)</span>. There are <span class="math inline">\(n (n-1)/2\)</span> degrees of freedom, hence there are <span class="math inline">\(2^{n (n-1)/2}\)</span> configurations.</li>
-</ul>
-<p>Because the number of configurations is exponential (in <span class="math inline">\(N\)</span>), we can rewrite <span class="math inline">\(\mathcal N_N\)</span> in large-deviation form. This is fancy words for we insert the identity in the form <span class="math inline">\(\exp \log (\cdot) = 1\)</span>. <span class="math display">\[\begin{align}
-    \mathcal N_N(Q) = \exp(\log (\mathcal N_N (Q)) \doteq \exp(N s(Q))
-\end{align}\]</span> where <span class="math inline">\(s(Q) = \frac{1}{N} \log(\mathcal N_N(Q))\)</span> is the entropy density (we’ll always apply Stirling’s approximations to this thing),.</p>
-<p>An abridged expression for our quenched partition fucntion is <span class="math inline">\(\mathbb E[Z^n] = \sum_{Q} \exp(N g(Q))\)</span>, where <span class="math inline">\(g(Q) \equiv s(Q) + \frac{\beta^2}{4}\sum_{a,b=1}^n Q_{ab}\)</span>. Now, our method of attack is to estimate the sum using saddle point. We must proceed carefully because sometimes the saddle point exhibits <strong>replica symmetry breaking</strong>!</p>
-<section id="replica-symmetry-solution" class="level2">
-<h2 class="anchored" data-anchor-id="replica-symmetry-solution">Replica Symmetry Solution</h2>
-<p><strong>Definition (Replica Symmetry (Breaking)):</strong> At the beginning of the calculation, we assumed replicas are statistically independent. So that means we can permute our replicas at no cost. Stated formally, let <span class="math inline">\(\pi\)</span> is some permutation operator. When the dominant saddle point exhibits <span class="math display">\[\begin{align}
-  g(Q_{\pi(a), \pi(b)}) = g(Q)
-\end{align}\]</span> the system has <strong>replica symmetry</strong>.</p>
-<p>In the case where we have replica symmetry, this fixes <span class="math inline">\(Q\)</span> as it’s entries should be invariant under permutation. <span class="math inline">\(Q_{aa} = \alpha\)</span>, and <span class="math inline">\(Q_{ab} = \beta\)</span> for all combinations <span class="math inline">\(a\neq b\)</span>. <span class="math display">\[\begin{align}
-  Q = \begin{pmatrix}
-    \alpha &amp; \beta &amp; \beta &amp; \\
-    \beta &amp; \alpha &amp; \beta &amp; ...\\
-    \beta &amp; \beta &amp; \alpha &amp; \\
-      &amp; \vdots &amp;  &amp; \ddots
-  \end{pmatrix} = (\alpha - \beta) \mathbb I + \beta  ~ xx^T, &amp;&amp; \text{where } x = (1,1,...)
-\end{align}\]</span> Hence it should look like an identity plus a rank 1 correction.</p>
-<p>However, by some law I saw in <code>Interstelar (2014)</code>, if something can go wrong, it will go wrong. And in physics, it goes extra crazy. <strong>Replica symmetry can be spontaneously broken</strong> in the <span class="math inline">\(N \to \infty\)</span> limit (analogous to the <span class="math inline">\(\mathbb Z_2\)</span> symmetry breaking exhibits by the Curie-Weiss model). We’ll see this in action in the next section…</p>
-<p>Going back to our problem, let’s analyze the entires of <span class="math inline">\(Q\)</span> assuming replica symmetry. We already know the diagonal <span class="math inline">\(Q_{aa} = 1\)</span>, what about the off-diagonal. Well recall entries can only take in two values <span class="math inline">\(Q_{ab} \in \{0, 1\}\)</span>:</p>
-<ul>
-<li>For <span class="math inline">\(Q_{ab} = 0\)</span>, we’ll denote these solutions as <span class="math inline">\(Q_{RS,0}\)</span>. Then <span class="math display">\[\begin{align}
-\mathcal N_N(Q_{RS,0}) &amp; = \prod_{\alpha=0}^{n-1} (2^N - \alpha) \\
-s(Q_{RS,0}) &amp; = \frac{1}{N} \sum_{\alpha =0}^{n-1} \log(2^N - \alpha) \approx \frac{1}{N} \sum_{\alpha = 0}^{n-1} \log(2^N) = n \log 2\\
-g_0(\beta, n) \equiv g(Q_{RS,0}) &amp; = n (\frac{\beta^2}{4} + \log 2)
-\end{align}\]</span></li>
-<li>For <span class="math inline">\(Q_{ab} = 1\)</span>, we’ll denote these solutions as <span class="math inline">\(Q_{RS,1}\)</span>. Then <span class="math display">\[\begin{align}
-\mathcal N_N(Q_{RS,1}) &amp; = 2^N\\
-s(Q_{RS,1}) &amp; = \log 2\\
-g_1(\beta, n) \equiv g(Q_{RS,1}) &amp; = \frac{n^2 \beta^2}{4} + \log 2
-\end{align}\]</span></li>
-</ul>
-<p>Because we’re approximating this as a saddle point, our solution will be dictated by becomes <span class="math inline">\(\text{max}[g_0(\beta, n), g_1(\beta, n)]\)</span>. Interpretation-wise, we can say there’s a phase-transition between the <span class="math inline">\(g_0\)</span> solution and the <span class="math inline">\(g_1\)</span> solution, which is <span class="math inline">\(\beta_c(n) = \sqrt{4 \log 2 /n}\)</span></p>
-<ul>
-<li>When <span class="math inline">\(n &gt; 1\)</span>:
-<ul>
-<li>If <span class="math inline">\(\beta &gt; \beta_c\)</span> (low temperature phase), then <span class="math inline">\(g_1 &gt; g_0\)</span>. The <span class="math inline">\(g_1\)</span> solution dominates, all replicas are locked together.</li>
-<li>If <span class="math inline">\(\beta &lt; \beta_c\)</span> (high temperature phase), then <span class="math inline">\(g_0 &lt; g_1\)</span>. The <span class="math inline">\(g_0\)</span> solution dominates, hence all replicas are independent.</li>
-</ul></li>
-<li>When <span class="math inline">\(n &lt; 1\)</span>, which is the limit we’ll eventually take, the phases flip (in temperature!)
-<ul>
-<li><p>If <span class="math inline">\(\beta &gt; \beta_c\)</span> (low temperature phase), then <span class="math inline">\(g_1 &lt; g_0\)</span>.</p></li>
-<li><p>If <span class="math inline">\(\beta &lt; \beta_c\)</span> (high temperature phase), then <span class="math inline">\(g_0 &gt; g_1\)</span>.</p>
-<p>Replicas becomes independent at low temperatures, and correlated at high temperatures. Wait whaaaat? We’ve previously stated that they are correlated…</p></li>
-</ul></li>
-</ul>
-<p>In the <span class="math inline">\(n&lt; 1\)</span> regime, replica trick requires us to use the minimum of <span class="math inline">\(g(Q)\)</span>… There is no mathematical justification for this.</p>
-<p>Let’s compute the free energy now <span class="math display">\[\begin{align}
-    - \beta f &amp; \equiv \lim_{N \to \infty} \frac{1}{N} \mathbb E [\log Z] \\
-    &amp; = \lim_{N \to \infty} \lim_{n \to 0} \frac{1}{N n} \log (\mathbb E[Z^n]) &amp; \text{Replica trick formula}\\
-    &amp; = \lim_{n \to 0} \lim_{N \to \infty} \frac{1}{N n} \log (\mathbb E[Z^n])  &amp; \text{Interchange limits (non rigorous)}\\
-    &amp; = \lim_{n \to 0} \frac{g_0(n, \beta)}{n} = \frac{\beta^2}{4} + \log 2
-\end{align}\]</span> We have recovered the low temperature phase <span class="math inline">\(\beta &gt; \beta_c\)</span>, but it misses the existence of the phase transition. In general, the RS solution isn’t able to find the low temperature phase.</p>
-</section>
-<section id="one-step-replica-symmetry-breaking-1rsb-solution" class="level2">
-<h2 class="anchored" data-anchor-id="one-step-replica-symmetry-breaking-1rsb-solution">One-Step Replica-Symmetry Breaking (1RSB) Solution</h2>
-<p>To recover the lower temperature phase, perhaps the system breaks replica symmetry! So how do we find these new saddle points? We’ll use <strong>one-step replica symmetry break</strong>.</p>
-<p>The idea is to suppose <span class="math inline">\(n\)</span> is a multiple of <span class="math inline">\(x\)</span>, divide the <span class="math inline">\(n\)</span> replicas into <span class="math inline">\(n/x\)</span> groups of <span class="math inline">\(x\)</span> elements, and now set <span class="math display">\[\begin{align*}
-    Q_{aa} &amp;= \alpha_1  &amp;\text{In this problem it is 1}\\
-    Q_{ab} &amp; = \beta_1 &amp; \text{If $a$ and $b$ are in the same group}\\
-    Q_{ab} &amp; = \gamma_1 &amp; \text{If $a$ and $b$ are NOT in the same group}
-\end{align*}\]</span> Recall for for this problem, it’s a symmetric matrix with elements in <span class="math inline">\(\{0,1\}\)</span>. So <span class="math inline">\(Q_{aa}  = 1\)</span>, and this ansatz is only different if we allow <span class="math inline">\(\beta_1 = 1\)</span> and <span class="math inline">\(\gamma_1 = 0\)</span>.</p>
-<p>So now our indices becomes <span class="math inline">\(i_1 = ... = i_x\)</span>, <span class="math inline">\(i_{x+1} = ... = i_{2x}\)</span>. The number of microstates <span class="math inline">\((i_1, ..., i_n)\)</span> which satsify this becomes <span class="math display">\[\begin{align}
-    \mathcal N_N(Q) &amp;= 2^N \times (2^N -  1) \times ... \times (2^N - n/x  +1 )\\
-    s(Q) &amp;= (n/x) \log 2\\
-    g_{1RSB}(\beta, n, x) &amp; = n (\frac{\beta^2}{4} x + \frac{1}{x} \log 2)
-\end{align}\]</span> So now we’ll minimize this (recall our discussion / example earlier). Minimizing w.r.t. <span class="math inline">\(x\)</span> yields <span class="math display">\[\begin{align}
-    x_* = \frac{2 \sqrt{\log 2}}{\beta} = \frac{\beta_c}{\beta}
-\end{align}\]</span> We can now compute our free energy <span class="math display">\[\begin{align}
-    - \beta f &amp; = \lim_{N \to \infty} \frac{1}{N}\mathbb E[\log Z]\\
-    &amp; = \lim_{N \to \infty} \lim_{n \to 0} \frac{1}{Nn} \log(\mathbb E[Z^n]) \\
-    &amp; = \lim_{n \to 0}\lim_{N \to \infty}\frac{1}{Nn} \log(\mathbb E[Z^n])\\
-    &amp; = \lim_{n \to 0} \min_x \frac{g_{1{RSB}}(\beta, n \, x)}{n} &amp; \text{Exchanged limits}\\
-    &amp; = \beta \sqrt{\log 2}
-\end{align}\]</span> which is the correct result!</p>
-<hr>
-</section>
-</section>
-<section id="appendix" class="level1">
-<h1>Appendix</h1>
-<section id="understanding-minimization-of-gcdot-via-toy-model" class="level2">
-<h2 class="anchored" data-anchor-id="understanding-minimization-of-gcdot-via-toy-model">Understanding minimization of <span class="math inline">\(g(\cdot)\)</span> via toy model</h2>
-<p>In order to understand this oddity, we can examine a toy example. Consider the integral <span class="math display">\[\begin{align}
-  Z(n) = \int e^{-(N/2) \sum_{(ab)} Q_{ab}^2} \prod_{(ab)} dQ_{ab} = \left (\frac{2\pi}{N} \right)^{n(n-1)/4}
-\end{align}\]</span> where <span class="math inline">\((ab)\)</span> runs over all unordered pairs of indices <span class="math inline">\(a,b \in \{1,...,n\}\)</span> with <span class="math inline">\(a\neq b\)</span>. For example: all unordered pairs of <span class="math inline">\(\{1,2,3,4\}\)</span> is <span class="math inline">\(\{(1,2),(1,3),(1,4),(2,3),(2,4),(3,4)\}\)</span>; meaning it’s equivalent to <span class="math inline">\(\sum_{i &lt; j}\)</span>.</p>
-<p>Anyways, in our case <span class="math inline">\(g(Q) = - \frac{1}{2} \sum_{a&lt;b}Q^2_{ab}\)</span>. If we assume the saddle point is dominated by the replica-symmetric point <span class="math inline">\(Q^*_{ab} = q_0\)</span> for <span class="math inline">\(a\neq b\)</span>. We get <span class="math display">\[\begin{align}
-  g(Q^*) = - n(n-1)q_0^2 /4
-\end{align}\]</span> To recover the <span class="math inline">\(Z(n=0) = 1\)</span> limit, we should make <span class="math inline">\(q_0 = 0\)</span>. However, <span class="math inline">\(q_0 = 0\)</span> corresponds to when <span class="math inline">\(g(Q^*, q_0 = 0)\)</span> is minimized. Hmm…</p>
-<p>Mezard &amp; Montanari explain this by saying that the number of degrees of freedom become negative when <span class="math inline">\(n &lt; 1\)</span>. But it isn’t clear to me if this reason generalizes, and what the implications are.</p>
-</section>
-<section id="saddle-point" class="level2">
-<h2 class="anchored" data-anchor-id="saddle-point">Saddle Point</h2>
-<p>The saddle point approximation is for estimating integrals of the form <span class="math display">\[\begin{align}
-    I = \int e^{-f(x)} dx
-\end{align}\]</span> The idea is that the exponential will pick out the minimum of <span class="math inline">\(f(x)\)</span> and exponentially kill other contributions. We can get an analytic result if we Taylor expand <span class="math inline">\(f(x)\)</span> to second order around it’s minimum <span class="math inline">\(x_0\)</span> <span class="math display">\[\begin{align}
-    f(x) \approx  f(x_0) + \cancel{f&#39;(x_0)} x_0 + \frac{1}{2} f&#39;&#39;(x_0) (x - x_0)^2 + \mathcal O(x^3)
-\end{align}\]</span> Plugging this into the integral, we get a gaussian <span class="math display">\[\begin{align}
-    I \approx e^{-f(x_0)} \int e^{-\frac{f&#39;&#39;(x_0)}{2}(x-x_0)^2} dx = e^{-f(x_0)} \sqrt{\frac{2\pi}{f&#39;&#39;(x_0)}}
-\end{align}\]</span></p>
-</section>
-<section id="gartner-ellis-theorem" class="level2">
-<h2 class="anchored" data-anchor-id="gartner-ellis-theorem">Gartner-Ellis Theorem</h2>
-<p><strong>Definition (Exposed Point):</strong> <span class="math inline">\(x \in \mathbb R\)</span> is consider an <strong>exposed point</strong> for function <span class="math inline">\(f: \mathbb R \to \mathbb R\)</span>, if <span class="math inline">\(\exists t\)</span> s.t. <span class="math inline">\(\forall y \neq x\)</span> the following holds <span class="math display">\[\begin{align}
-  t y - f(y) &gt; t x - f(x)
+<p>Consider the <span class="math display">\[\begin{align}
+    \frac{dx_t}{dt} &amp; = v_\theta(x_t,t) &amp; \text{(Continuous)}\\
+    x_{t+\epsilon} &amp; = x_t + \epsilon~ v_\theta(x_t, t) &amp; \text{(Naive Discretization)}
+\end{align}\]</span> where <span class="math inline">\(v_\theta : \mathbb R^d \times [0,1] \to \mathbb R^d\)</span> is a residual (skipped connections) neural network, which is assumed to be Lipshifts.\ \ However, what if we want to stop thinking about transporting just particles, but rather transporting probability distribution mass? Recall the <span class="math display">\[\begin{align}
+    \frac{\partial p_t}{\partial t} &amp; = - \nabla \cdot (v_t ~p_t)\\
+    &amp; = - \underbrace{v_t \cdot \nabla p_t}_{\text{Convection}} - \underbrace{p_t (\nabla \cdot  v_t )}_{\text{compression / dilation}}
+\end{align}\]</span> Why would you want to do this? In metrology, it’s quite difficult to make a point estimate of the future (due to chaoticity of fluid dynamics), so instead what if we make a probabilistic inference! This frame work more well posed!</p>
+<p>If you want to add diffusion, you recover the <span class="math display">\[\begin{align}
+    \frac{\partial p_t}{\partial t} = - \nabla \cdot (p_t(x) v_t) - \Delta \left(\frac{1}{2} \sigma^2(x) p_t(x) \right)\iff dx_t = v_t(x_t) dt + \sigma dW_t \label{eqn:FokkerPlanck}
+\end{align}\]</span> where <span class="math inline">\(\Delta\)</span> is the Laplacian operator, where we interpret <span class="math inline">\(\text{Law}(x_t) = p_t\)</span>.</p>
+Now we can finally begin Score Based Diffusion!
+Consider the stochastic differential equation <span class="math display">\[\begin{align}
+    dx_t = - \kappa x_t dt + \sigma dW_t
+\end{align}\]</span> To solve it, perform the change of variable <span class="math display">\[\begin{align}
+    y_t &amp;= e^{\kappa t} x_t\\
+    dy_t &amp;= e^{\kappa t} (- \kappa x_t  dt + \sigma dW_t) + \kappa  e^{\kappa t}x_t dt = e^{\kappa t} \sigma dW_t
+\end{align}\]</span> This yields <span class="math display">\[\begin{align}
+    x_t = e^{-\kappa t} x_0 + \sigma \sqrt{\frac{1 - e^{-2 \kappa t}}{2 \kappa}} z
+\end{align}\]</span> where <span class="math inline">\(z \sim N(0,\mathbb I)\)</span>. Inspecting the limiting cases of our solution, <span class="math inline">\(x_{t=0} = x_0\)</span> and <span class="math inline">\(x_{t \to +\infty} = \frac{\sigma}{2\sqrt{2\kappa}} z\)</span>. So this is a process is a linear interpolation between our input <span class="math inline">\(x_0\)</span> and white noise <span class="math inline">\(z\)</span>.
+<p>Now our task is to denoise the OU process. For notation, let’s use <span class="math inline">\(y_t = x_{T-t}\)</span> and <span class="math inline">\(q_t = p_{T-t}\)</span>. We can plug our <span class="math inline">\(q_t\)</span> into the Fokker Planck (<span class="math inline">\(\ref{eqn:FokkerPlanck}\)</span>), and derive a time evolution on the distribution for the reverse process <span class="math display">\[\begin{align}
+    \frac{\partial p_t}{\partial t} + \nabla \cdot (- p_t x_t) - \Delta p_t &amp; = 0 &amp; \text{Forward in time}\\
+    \implies  \frac{\partial q_t}{\partial t} + \nabla \cdot (q _t y_t) + \Delta q_t &amp; = 0 &amp; \text{Backwards in time}
+\end{align}\]</span> Notice your have inverse diffusion, which is completely unstable. Show how can we rewrite this to become more stable? Notice the trick <span class="math display">\[\begin{align}
+    \Delta q_t = \nabla \cdot (q_t \underbrace{\nabla \log q_t}_{\text{score}})
+\end{align}\]</span> We finally get <span class="math display">\[\begin{align}
+    \frac{\partial q_t}{\partial t} + \nabla \cdot (q_t y_t - (1+\alpha) q_t \nabla\log p_t) - \alpha \Delta q_t = 0\\
+    dy_t = [y_t + (1+\alpha) \nabla \log q_t] + \sqrt{2\alpha}~ dW_t
+\end{align}\]</span> We now have a generic way to talk about the reverse-time process!</p>
+We have the <span class="math inline">\(\kappa=1\)</span> OU, <span class="math display">\[\begin{align}
+    x_t = e^{-t} x + \sqrt{1 - e^{-2 t}} z
+\end{align}\]</span> Taking the coordinate change <span class="math inline">\(\tilde x_t = e^{t x_t}\)</span>, you now find at each point in time, you observe <span class="math inline">\(y_t\)</span> <span class="math display">\[\begin{align}
+    y_t = x + \sqrt{e^{2t} - 1}z
+\end{align}\]</span> Recall we are attempting to denoise this process. In signal processing, your trying to minimize the mean square error <span class="math display">\[\begin{align}
+    \mathbb E_{x,z} [||\hat x(y_t) - x||^2]
+\end{align}\]</span> So given an observed noisy input <span class="math inline">\(y_t\)</span>, can we construct a <span class="math inline">\(\hat x\)</span> (which takes in <span class="math inline">\(y_t\)</span>) and yields <span class="math inline">\(x\)</span>. We can use to construct the optimal denoiser
+<p>Plugging in Tweedy’s Formula into the mean square error <span class="math display">\[\begin{align}
+    \mathbb E_{x,z} [|| ]
+\end{align}\]</span> As a machine learning person, once you see, “minimize square error”, you should just plug that into a neural network and let it rip. So your loss function becomes <span class="math display">\[\begin{align}
+    \mathcal L(\theta) =  \Big|\Big|\frac{\hat x_\theat(x_\sigma) - x}{\sigma^2}\Big|\Big|^2
 \end{align}\]</span></p>
 
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -5189,7 +5116,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/clarkmiyamoto\.github\.io\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
