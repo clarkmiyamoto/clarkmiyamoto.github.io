@@ -12,4 +12,4 @@ Reach me at `cm6627 [at] nyu [dot] edu`.
 - August 2025:
     - I'll be attending the Princeton Machine Learning Theory Summer School [notes]
     - I'll be attending IAIFI's Summer School [notes]
-- June 2025: I'll be at The Beg Rohu Summer School of Physics: Learning with Machines, Physics, and Minds. This will be my first summer school of my PhD & my first time in Europe-- very exciting! [[notes](/_ExternalRepos/begrohu2025/main.pdf)]
+- June 2025: I'll be at The Beg Rohu Summer School of Physics: Learning with Machines, Physics, and Minds. This will be my first summer school of my PhD & my first time in Europe-- very exciting! [[notes](https://raw.githubusercontent.com/clarkmiyamoto/begrohu2025/main/main.pdf)]
