@@ -1,5 +1,10 @@
 # clarkmiyamoto.github.io
 
+# Locally preview webiste
+```
+quarto preview
+```
+
 # Update Website
 
 Pull latest changes from `_ExternalRepos`
