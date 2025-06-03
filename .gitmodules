@@ -1,3 +1,6 @@
 [submodule "begrohu2025"]
 	path = begrohu2025
 	url = https://github.com/clarkmiyamoto/begrohu2025
+[submodule "_ExternalRepos/begrohu2025"]
+	path = _ExternalRepos/begrohu2025
+	url = https://github.com/clarkmiyamoto/begrohu2025
