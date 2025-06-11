@@ -6,11 +6,6 @@ quarto preview
 ```
 
 # Update Website
-
-Pull latest changes from `_ExternalRepos`
-```
-git pull --recurse-submodules
-```
 Use quarto to `/docs`
 ```
 quarto publish gh-pages
