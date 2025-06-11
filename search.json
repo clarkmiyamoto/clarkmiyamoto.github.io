@@ -1,12 +1,5 @@
 [
   {
-    "objectID": "blog/index.html",
-    "href": "blog/index.html",
-    "title": "Blog posts",
-    "section": "",
-    "text": "Tutorial on Replica Trick\n\n\n\n\n\n\n\n\n\n\n\nFeb 2025\n\n\nClark Miyamoto\n\n\n\n\n\n\nNo matching items"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "News",
@@ -54,5 +47,12 @@
     "title": "Tutorial on Replica Trick",
     "section": "Gartner-Ellis Theorem",
     "text": "Gartner-Ellis Theorem\nDefinition (Exposed Point): \\(x \\in \\mathbb R\\) is consider an exposed point for function \\(f: \\mathbb R \\to \\mathbb R\\), if \\(\\exists t\\) s.t. \\(\\forall y \\neq x\\) the following holds \\[\\begin{align}\n  t y - f(y) &gt; t x - f(x)\n\\end{align}\\]"
+  },
+  {
+    "objectID": "blog/index.html",
+    "href": "blog/index.html",
+    "title": "Blog posts",
+    "section": "",
+    "text": "Tutorial on Replica Trick\n\n\n\n\n\n\n\n\nFeb 2025\n\n\nClark Miyamoto\n\n\n\n\n\nNo matching items"
   }
 ]
