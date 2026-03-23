@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://clarkmiyamoto.github.io/index.html</loc>
-    <lastmod>2025-06-11T08:41:38.004Z</lastmod>
+    <loc>https://clarkmiyamoto.github.io/teaching/index.html</loc>
+    <lastmod>2026-03-23T17:31:02.535Z</lastmod>
   </url>
   <url>
-    <loc>https://clarkmiyamoto.github.io/blog/replica-trick-tutorial.html</loc>
-    <lastmod>2025-06-11T08:41:37.970Z</lastmod>
+    <loc>https://clarkmiyamoto.github.io/blog/20250228-replica-trick-tutorial.html</loc>
+    <lastmod>2026-03-23T17:31:02.533Z</lastmod>
+  </url>
+  <url>
+    <loc>https://clarkmiyamoto.github.io/index.html</loc>
+    <lastmod>2026-03-23T17:31:02.535Z</lastmod>
   </url>
   <url>
     <loc>https://clarkmiyamoto.github.io/blog/index.html</loc>
-    <lastmod>2025-06-11T08:41:37.969Z</lastmod>
+    <lastmod>2026-03-23T17:31:02.535Z</lastmod>
+  </url>
+  <url>
+    <loc>https://clarkmiyamoto.github.io/blog/20260202-affineinvariance.html</loc>
+    <lastmod>2026-03-23T17:31:39.673Z</lastmod>
   </url>
 </urlset>
