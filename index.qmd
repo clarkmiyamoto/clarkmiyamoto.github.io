@@ -4,7 +4,7 @@ format:
     toc: false
 ---
 
-###### Hi, I'm Clark Miyamoto! 
+###### Hi, I'm Clark Miyamoto!  
 
 I'm an incoming PhD student at New York University's [Center for Data Science](https://cds.nyu.edu/), 
 advised by [Eric Vanden-Eijnden](https://wp.nyu.edu/courantinstituteofmathematicalsciences-eve2/) 
