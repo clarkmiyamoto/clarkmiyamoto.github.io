@@ -3,3 +3,20 @@
 **/.ipynb_checkpoints
 
 *.DS_Store
+
+**/*.quarto_ipynb
+
+# Quarto rendered site output (published via GitHub Actions to gh-pages)
+/docs/
+
+# Common local environments
+.venv/
+venv/
+
+# Latex
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.pdf
+*.synctex.gz

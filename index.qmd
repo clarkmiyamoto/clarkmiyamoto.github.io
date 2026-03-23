@@ -1,15 +1,33 @@
 ---
+format:
+  html:
+    toc: false
 ---
 
-Clark Miyamoto is a Physics PhD student at New York University. 
-I'm interested in the intersection between statistical physics & machine learning. 
+###### Hi, I'm Clark Miyamoto! 
 
-Reach me at `cm6627 [at] nyu [dot] edu`.
+I'm an incoming PhD student at New York University's [Center for Data Science](https://cds.nyu.edu/), 
+advised by [Eric Vanden-Eijnden](https://wp.nyu.edu/courantinstituteofmathematicalsciences-eve2/) 
+& [Joan Bruna](https://cims.nyu.edu/~bruna/). My research focuses on leveraging generative models 
+for scientific problems, particularly sampling and inverse problems, with a broader interest in computational statistics.
 
-# News
-**My goal is to upload useful notes from these events, so I'm putting the link in now to remind myself**
+Before data science, I studied Physics. I transfered from the Physics PhD at NYU, and did my B.S. at the 
+University of Southern California where I designed superconducting qubits under [Eli Levenson-Falk](https://dornsife.usc.edu/lfl/). 
+
+
+###### What I'm up to:
 
 - August 2025:
-    - I'll be attending the Princeton Machine Learning Theory Summer School [notes]
-    - I'll be attending IAIFI's Summer School [notes]
-- June 2025: I'll be at The Beg Rohu Summer School of Physics: Learning with Machines, Physics, and Minds. This will be my first summer school of my PhD & my first time in Europe-- very exciting! Notes: [[pdf](https://clarkmiyamoto.github.io/begrohu2025/main.pdf)] [[raw](https://github.com/clarkmiyamoto/begrohu2025)]
+    - I'll be attending the Princeton Machine Learning Theory Summer School 
+    - I'll be attending IAIFI's Summer School
+- June 2025: I'll be at The Beg Rohu Summer School of Physics: Learning with Machines, Physics, and Minds. 
+  This will be my first summer school of my PhD & my first time in Europe. Notes: [[pdf](https://clarkmiyamoto.github.io/begrohu2025/main.pdf)] 
+  [[raw](https://github.com/clarkmiyamoto/begrohu2025)]
+
+```{=html}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.body.classList.add('is-home');
+  });
+</script>
+```

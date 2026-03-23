@@ -1,1 +1,240 @@
-/* css styles */
+/* Site styles (Quarto overrides + small custom components) */
+
+/* ----------------------------
+   Fonts
+   ---------------------------- */
+@font-face {
+  font-family: "CircularXX-Regular";
+  src: url("assets/fonts/CircularXX-Regular.otf") format("opentype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "CircularXX-Medium";
+  src: url("assets/fonts/CircularXX-Medium.otf") format("opentype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ----------------------------
+   Design tokens
+   ---------------------------- */
+:root {
+  --font-family-base-regular: "CircularXX-Regular";
+  --font-family-base-medium: "CircularXX-Medium";
+  --font-size-base: 16px;
+  --font-weight-base: 900;
+
+  --color-text: #000;
+  --color-link: #000;
+  --color-link-hover: #d75200;
+  --color-bg: rgb(250, 250, 249);
+
+  --motion-fast: 0.18s;
+}
+
+/* ----------------------------
+   Base typography + links
+   ---------------------------- */
+body,
+.quarto-body,
+main {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+  font-family: var(--font-family-base-regular);
+  font-weight: var(--font-weight-base);
+  font-synthesis: weight;
+}
+
+/* Homepage: no right-hand margin sidebar */
+body.is-home #quarto-margin-sidebar {
+  display: none !important;
+}
+/* Prevent Bootstrap container "snap" at breakpoints (keeps text stable
+   until the viewport actually constrains it). */
+.container,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl,
+.container-xxl {
+  max-width: none !important;
+}
+
+/* Control body text width directly */
+main.content {
+  width: 100%;
+  max-width: 790px; /* adjust to taste */
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* Blog-only body width (applies to files under blog/ via blog/_metadata.yml) */
+body.blog main.content {
+  max-width: 2000px; /* adjust independently from site default */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-base-regular);
+  font-weight: 600;
+  font-synthesis: weight;
+}
+
+a,
+a:visited {
+  color: var(--color-link);
+  font-weight: 400;
+  transition: color var(--motion-fast) ease-out;
+}
+
+a:hover,
+a:focus {
+  color: var(--color-link-hover);
+}
+
+a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a,
+  a:visited {
+    transition: none;
+  }
+}
+
+/* Main content horizontal offset (responsive) */
+#quarto-content {
+  padding-left: 5rem;
+}
+
+@media (max-width: 992px) {
+  /* On small screens, avoid an artificial left gap */
+  #quarto-content {
+    padding-left: 0;
+  }
+}
+
+/* ----------------------------
+   Quarto components
+   ---------------------------- */
+.listing-description {
+  font-size: var(--font-size-base);
+}
+
+/* Blog listing: move date below title/description instead of to the left */
+div.quarto-post.image-right {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.25em !important;
+}
+div.quarto-post.image-right .body {
+  flex-basis: auto !important;
+}
+div.quarto-post.image-right .metadata {
+  order: 3;
+  flex-basis: auto !important;
+}
+
+/* Sidebar (left column nav) */
+#quarto-sidebar .sidebar-title a,
+#quarto-sidebar .sidebar-item-container,
+#quarto-sidebar .sidebar-item-container a,
+#quarto-sidebar .sidebar-item-text {
+  color: var(--color-text) !important;
+  text-decoration: none !important;
+  font-size: 18px;
+  font-family: var(--font-family-base-regular);
+  font-weight: 100;
+  transition: color 0.2s ease-in-out;
+}
+
+.sidebar-item-container:hover .sidebar-item-text,
+.sidebar-item-container a:hover,
+#quarto-sidebar .sidebar-item .sidebar-link:hover,
+#quarto-sidebar .sidebar-item-container .sidebar-link:hover {
+  color: var(--color-link-hover) !important;
+  text-decoration: none !important;
+}
+
+/* Sidebar active (current page) link: keep same blue color */
+#quarto-sidebar .sidebar-item .sidebar-link.active,
+#quarto-sidebar .sidebar-item-container .sidebar-link.active {
+  color: var(--color-link-hover) !important;
+  text-decoration: none !important;
+}
+
+/* Sidebar title hover: match other sidebar links */
+#quarto-sidebar .sidebar-title a:hover {
+  color: var(--color-link-hover) !important;
+}
+
+/* Sidebar title active on homepage: match active link color */
+body.is-home #quarto-sidebar .sidebar-title a {
+  color: var(--color-link-hover) !important;
+}
+
+/* Layout */
+/* Keep Quarto margin sidebar enabled (for margin notes/citations). */
+
+#quarto-sidebar {
+  background-color: var(--color-bg);
+}
+/* Keep margin sidebar enabled for margin notes/citations */
+#quarto-margin-sidebar {
+  visibility: visible;
+}
+
+/* Docked sidebar: remove divider + control link positioning */
+#quarto-sidebar {
+  border-right: none !important;
+  box-shadow: none !important;
+  /* Move the sidebar content right (increase/decrease to taste) */
+  padding-left: 2rem;
+  padding-top: 1rem;
+}
+
+@media (max-width: 992px) {
+  /* Let Quarto's mobile layout handle spacing */
+  #quarto-sidebar {
+    padding-left: 0;
+    padding-top: 0.5rem;
+  }
+}
+
+/* Prevent resize "glitch": disable collapse animations for sidebar.
+   During viewport resize, Bootstrap's horizontal collapse can momentarily
+   overlay content while width transitions. */
+#quarto-sidebar.collapsing,
+#quarto-sidebar.collapse-horizontal.collapsing {
+  transition: none !important;
+  width: auto !important;
+}
+
+/* Some themes apply borders to the container/nav instead */
+.sidebar,
+.sidebar.sidebar-navigation,
+nav.sidebar {
+  border-right: none !important;
+  box-shadow: none !important;
+}
+
+/* Adjust where sidebar words sit (tweak these numbers) */
+#quarto-sidebar .sidebar-item-container .sidebar-link {
+  padding-left: 0;
+  padding-right: 0.25rem;
+}
+
+/* If you want the whole sidebar content shifted, adjust this */
+#quarto-sidebar .sidebar-items-container {
+  padding-left: 0;
+}

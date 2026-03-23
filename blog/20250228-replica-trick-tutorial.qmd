@@ -1,12 +1,10 @@
 ---
 title: "Tutorial on Replica Trick"
-author: "Clark Miyamoto"
 date: "2025-02-28"
 format:
     html: 
+      toc: false
       self-contained: true
-      grid: 
-        margin-width: 350px
       math: mathjax
       include-in-header: mathjax.html
 execute: 
@@ -36,8 +34,6 @@ where one interprets $Z^n$ to be $n$ statistically independent replicas of the v
 From there, you non-rigoroulsy analytically continue $n$ down to zero.
 
 # Random Energy Model
-
-
 This section follows `Information, Physics, and Computation by Mézard and Montanari, Chapter 8`
 
 Here we do a tutorial calculation of the random energy model.
@@ -200,10 +196,4 @@ The idea is that the exponential will pick out the minimum of $f(x)$ and exponen
 Plugging this into the integral, we get a gaussian
 \begin{align}
 	I \approx e^{-f(x_0)} \int e^{-\frac{f''(x_0)}{2}(x-x_0)^2} dx = e^{-f(x_0)} \sqrt{\frac{2\pi}{f''(x_0)}}
-\end{align}
-
-## Gartner-Ellis Theorem
-**Definition (Exposed Point):** $x \in \mathbb R$ is consider an **exposed point** for function $f: \mathbb R \to \mathbb R$, if $\exists t$ s.t. $\forall y \neq x$ the following holds
-\begin{align}
-  t y - f(y) > t x - f(x) 
 \end{align}

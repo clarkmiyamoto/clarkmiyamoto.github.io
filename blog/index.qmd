@@ -1,12 +1,12 @@
 ---
-title: Blog posts
 date-format: "MMM YYYY"
 listing:
     contents: .
     type: default
     sort: "date desc"
     sort-ui: false
-    filter-ui: true
+    filter-ui: false
     categories: true
-    feed: true
+    feed: false
+    fields: [title, date, categories]
 ---

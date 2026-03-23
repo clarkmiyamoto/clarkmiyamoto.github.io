@@ -1,17 +1,19 @@
 project:
   type: website
   output-dir: docs
-  resources:
-    - external/begrohu2025/main.pdf
-  
 
 website:
-  title: "<a href='/index.qmd'>Clark Miyamoto</a>"
-  navbar:
-    left:
-      - href: blog/index.qmd
-        text: Blog 
-  sidebar: []  # No sidebar
+  title: "Clark Miyamoto"
+  search: false
+  sidebar:
+    style: "docked"
+    contents:
+      - text: "CV"
+        href: https://clarkmiyamoto.github.io/cv/Miyamoto_Clark_CV.pdf
+      - text: "Teaching"
+        href: teaching/index.qmd
+      - text: "Blog"
+        href: blog/index.qmd
 
 format:
   html:

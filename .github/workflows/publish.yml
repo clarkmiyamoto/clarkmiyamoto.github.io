@@ -1,7 +1,8 @@
 on:
   workflow_dispatch:
   push:
-    branches: main
+    branches:
+      - main
 
 name: Quarto Publish
 
@@ -26,6 +27,9 @@ jobs:
           cache: 'pip'
       - run: pip install jupyter
       - run: pip install -r requirements.txt
+
+      - name: Convert LaTeX blog posts to Quarto
+        run: python tools/convert_latex_posts.py
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2

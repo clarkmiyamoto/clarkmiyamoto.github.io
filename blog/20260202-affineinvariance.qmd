@@ -1,0 +1,29 @@
+---
+title: "Post title"
+date: 2026-03-18
+---
+
+<!-- AUTO-GENERATED from blog/latex source. Edit the .tex file instead. -->
+
+Affine invariance/equivariance is a desirable property for statistical
+inference algorithms. For example, consider sampling the posterior
+$p(\theta | \mathcal D)$, where
+$\theta = (\text{Lenght}, \text{Mass}, ...)$. If the data $\mathcal D$
+forces the posterior to different length/mass scales, this will
+correspond to stretchin/squishing the probability distribution (which
+are affine transformations), hence an affine invariant algorithm could
+prevent some heart-ache here.
+
+For MCMC, let's be specific, what is actually conserved under affine
+transformations? For a fixed RNG seed, the Metroplist-Hastings ratio is
+invariant under pushforward of the target distribution. This means the
+walkers' positions are equivariant with respect to pushforwards of the
+target distribution.
+
+# Stretch, Walk, & Side Move
+
+# Gradient Based Samplers
+
+## Langevin
+
+## Hamiltonian Monte Carlo
