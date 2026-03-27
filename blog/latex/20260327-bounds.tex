@@ -1,0 +1,42 @@
+% ---
+% title: "List of Bounds"
+% date: 2026-03-18
+% ---
+\documentclass{article}
+\usepackage{amsmath, amsfonts, amssymb} % Math formatting
+\usepackage{graphicx}
+
+\usepackage{mdframed} % Framed Enviroments
+\newmdenv[ 
+  topline=false,
+  bottomline=false,
+  skipabove=\topsep,
+  skipbelow=\topsep
+]{sidework} %% Side-work
+
+\title{List of Inequalities}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+Inequalities are mysterious yet necessary. Here's a running list of every inequality I've applied in research.
+
+\section{Basics}
+
+\textbf{Gr\"onwall's Inequality}
+Let $T>0$ and $f: [0,T] \to \mathbb R$ be differentiable. Suppose there is a time-dependent constant $C_t$
+\begin{align}
+    f'(t) \leq C_t \, f(t), \qquad \forall t \in [0,T]
+\end{align}
+Then
+\begin{align}
+    f(t) \leq f(0) \exp \left(\int_0^t C_s\, ds \right)
+\end{align}
+
+
+
+
+
+\end{document}
