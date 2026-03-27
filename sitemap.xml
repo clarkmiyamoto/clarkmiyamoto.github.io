@@ -2,26 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://clarkmiyamoto.github.io/teaching/index.html</loc>
-    <lastmod>2026-03-27T04:46:32.953Z</lastmod>
-  </url>
-  <url>
-    <loc>https://clarkmiyamoto.github.io/blog/20260327-bounds.html</loc>
-    <lastmod>2026-03-27T04:47:09.625Z</lastmod>
-  </url>
-  <url>
-    <loc>https://clarkmiyamoto.github.io/blog/index.html</loc>
-    <lastmod>2026-03-27T04:46:32.952Z</lastmod>
-  </url>
-  <url>
-    <loc>https://clarkmiyamoto.github.io/index.html</loc>
-    <lastmod>2026-03-27T04:46:32.953Z</lastmod>
+    <lastmod>2026-03-27T04:47:42.578Z</lastmod>
   </url>
   <url>
     <loc>https://clarkmiyamoto.github.io/blog/20250228-replica-trick-tutorial.html</loc>
-    <lastmod>2026-03-27T04:46:32.952Z</lastmod>
+    <lastmod>2026-03-27T04:47:42.577Z</lastmod>
   </url>
   <url>
-    <loc>https://clarkmiyamoto.github.io/blog/20260202-affineinvariance.html</loc>
-    <lastmod>2026-03-27T04:47:09.349Z</lastmod>
+    <loc>https://clarkmiyamoto.github.io/index.html</loc>
+    <lastmod>2026-03-27T04:47:42.578Z</lastmod>
+  </url>
+  <url>
+    <loc>https://clarkmiyamoto.github.io/blog/index.html</loc>
+    <lastmod>2026-03-27T04:47:42.577Z</lastmod>
+  </url>
+  <url>
+    <loc>https://clarkmiyamoto.github.io/blog/20260327-bounds.html</loc>
+    <lastmod>2026-03-27T04:48:16.957Z</lastmod>
   </url>
 </urlset>

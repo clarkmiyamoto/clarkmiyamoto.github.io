@@ -10,30 +10,6 @@
     ]
   },
   {
-    "objectID": "blog/20260327-bounds.html",
-    "href": "blog/20260327-bounds.html",
-    "title": "List of Bounds",
-    "section": "",
-    "text": "Inequalities are mysterious yet necessary. Here’s a running list of every inequality I’ve applied in research.\n\nBasics\nGrönwall’s Inequality Let \\(T&gt;0\\) and \\(f: [0,T] \\to \\mathbb R\\) be differentiable. Suppose there is a time-dependent constant \\(C_t\\) \\[\\begin{align}\n    f'(t) \\leq C_t \\, f(t), \\qquad \\forall t \\in [0,T]\n\\end{align}\\] Then \\[\\begin{align}\n    f(t) \\leq f(0) \\exp \\left(\\int_0^t C_s\\, ds \\right)\n\\end{align}\\]"
-  },
-  {
-    "objectID": "blog/index.html",
-    "href": "blog/index.html",
-    "title": "Clark Miyamoto",
-    "section": "",
-    "text": "List of Bounds\n\n\n\n\n\nMar 2026\n\n\n\n\n\n\n\nConstructing Affine Invariant/Equivariant MCMC Samplers\n\n\n\n\n\nMar 2026\n\n\n\n\n\n\n\nTutorial on Replica Trick\n\n\n\n\n\nFeb 2025\n\n\n\n\n\nNo matching items",
-    "crumbs": [
-      "Blog"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Clark Miyamoto",
-    "section": "",
-    "text": "Hi, I’m Clark Miyamoto!\nI’m an incoming PhD student at New York University’s Center for Data Science, advised by Eric Vanden-Eijnden & Joan Bruna. My research focuses on leveraging generative models for scientific problems, particularly sampling and inverse problems, with a broader interest in computational statistics.\nBefore data science, I studied Physics. I transfered from the Physics PhD at NYU, and did my B.S. at the University of Southern California where I designed superconducting qubits under Eli Levenson-Falk.\n\n\nWhat I’m up to:\n\nAugust 2025:\n\nI’ll be attending the Princeton Machine Learning Theory Summer School\nI’ll be attending IAIFI’s Summer School\n\nJune 2025: I’ll be at The Beg Rohu Summer School of Physics: Learning with Machines, Physics, and Minds. This will be my first summer school of my PhD & my first time in Europe. Notes: [pdf] [raw]"
-  },
-  {
     "objectID": "blog/20250228-replica-trick-tutorial.html",
     "href": "blog/20250228-replica-trick-tutorial.html",
     "title": "Tutorial on Replica Trick",
@@ -69,24 +45,27 @@
     "text": "Saddle Point\nThe saddle point approximation is for estimating integrals of the form \\[\\begin{align}\n    I = \\int e^{-f(x)} dx\n\\end{align}\\] The idea is that the exponential will pick out the minimum of \\(f(x)\\) and exponentially kill other contributions. We can get an analytic result if we Taylor expand \\(f(x)\\) to second order around it’s minimum \\(x_0\\) \\[\\begin{align}\n    f(x) \\approx  f(x_0) + \\cancel{f'(x_0)} x_0 + \\frac{1}{2} f''(x_0) (x - x_0)^2 + \\mathcal O(x^3)\n\\end{align}\\] Plugging this into the integral, we get a gaussian \\[\\begin{align}\n    I \\approx e^{-f(x_0)} \\int e^{-\\frac{f''(x_0)}{2}(x-x_0)^2} dx = e^{-f(x_0)} \\sqrt{\\frac{2\\pi}{f''(x_0)}}\n\\end{align}\\]"
   },
   {
-    "objectID": "blog/20260202-affineinvariance.html",
-    "href": "blog/20260202-affineinvariance.html",
-    "title": "Constructing Affine Invariant/Equivariant MCMC Samplers",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Clark Miyamoto",
     "section": "",
-    "text": "Affine invariance/equivariance is a desirable property for statistical inference algorithms. For example, consider sampling the posterior \\(p(\\theta | \\mathcal D)\\), where \\(\\theta = (\\text{Lenght}, \\text{Mass}, ...)\\). If the data \\(\\mathcal D\\) forces the posterior to different length/mass scales, this will correspond to stretchin/squishing the probability distribution (which are affine transformations), hence an affine invariant algorithm could prevent some heart-ache here.\nFor MCMC, let’s be specific, what is actually conserved under affine transformations? For a fixed RNG seed, the Metroplist-Hastings ratio is invariant under pushforward of the target distribution. This means the walkers’ positions are equivariant with respect to pushforwards of the target distribution."
+    "text": "Hi, I’m Clark Miyamoto!\nI’m an incoming PhD student at New York University’s Center for Data Science, advised by Eric Vanden-Eijnden & Joan Bruna. My research focuses on leveraging generative models for scientific problems, particularly sampling and inverse problems, with a broader interest in computational statistics.\nBefore data science, I studied Physics. I transfered from the Physics PhD at NYU, and did my B.S. at the University of Southern California where I designed superconducting qubits under Eli Levenson-Falk.\n\n\nWhat I’m up to:\n\nAugust 2025:\n\nI’ll be attending the Princeton Machine Learning Theory Summer School\nI’ll be attending IAIFI’s Summer School\n\nJune 2025: I’ll be at The Beg Rohu Summer School of Physics: Learning with Machines, Physics, and Minds. This will be my first summer school of my PhD & my first time in Europe. Notes: [pdf] [raw]"
   },
   {
-    "objectID": "blog/20260202-affineinvariance.html#langevin",
-    "href": "blog/20260202-affineinvariance.html#langevin",
-    "title": "Constructing Affine Invariant/Equivariant MCMC Samplers",
-    "section": "Langevin",
-    "text": "Langevin"
+    "objectID": "blog/index.html",
+    "href": "blog/index.html",
+    "title": "Clark Miyamoto",
+    "section": "",
+    "text": "List of Bounds\n\n\n\n\n\nMar 2026\n\n\n\n\n\n\n\nTutorial on Replica Trick\n\n\n\n\n\nFeb 2025\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Blog"
+    ]
   },
   {
-    "objectID": "blog/20260202-affineinvariance.html#hamiltonian-monte-carlo",
-    "href": "blog/20260202-affineinvariance.html#hamiltonian-monte-carlo",
-    "title": "Constructing Affine Invariant/Equivariant MCMC Samplers",
-    "section": "Hamiltonian Monte Carlo",
-    "text": "Hamiltonian Monte Carlo"
+    "objectID": "blog/20260327-bounds.html",
+    "href": "blog/20260327-bounds.html",
+    "title": "List of Bounds",
+    "section": "",
+    "text": "Inequalities are mysterious yet necessary. Here’s a running list of every inequality I’ve applied in research.\n\nBasics\nGrönwall’s Inequality Let \\(T&gt;0\\) and \\(f: [0,T] \\to \\mathbb R\\) be differentiable. Suppose there is a time-dependent constant \\(C_t\\) \\[\\begin{align}\n    f'(t) \\leq C_t \\, f(t), \\qquad \\forall t \\in [0,T]\n\\end{align}\\] Then \\[\\begin{align}\n    f(t) \\leq f(0) \\exp \\left(\\int_0^t C_s\\, ds \\right)\n\\end{align}\\]"
   }
 ]
